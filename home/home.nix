@@ -27,10 +27,12 @@
     pkgs.eza
     pkgs.fd
     pkgs.firefox-devedition
-    pkgs.ghostty
+    #pkgs.ghostty - ghostty is super slow on older machines
     pkgs.git
     pkgs.gnomeExtensions.dash-to-dock
     pkgs.joplin-desktop
+    pkgs.lazygit
+    pkgs.mariadb
     pkgs.ncdu
     pkgs.nerd-fonts.fira-code
     pkgs.oh-my-zsh
@@ -42,6 +44,43 @@
     pkgs.xclip
   ];
 
+  /*
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "FiraCode Nerd Font Mono";
+      size = 12;
+    };
+    themeFile = "Catppuccin-Mocha";
+    settings = {
+      copy_on_select = true;
+      tab_bar_style = "slant";
+      tab_title_template = "{index}:{title[:10]}";
+    };
+  };
+  */
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      general.import = [ "~/.config/alacritty/themes/catppuccin-mocha.toml" ];
+      selection.save_to_clipboard = true;
+      font.size = 12;
+      font.bold.family = "FiraCode Nerd Font";
+      font.bold.style = "Bold";
+      font.bold_italic.family = "FiraCode Nerd Font";
+      font.bold_italic.style = "Bold Italic";
+      font.italic.family = "FiraCode Nerd Font";
+      font.italic.style = "Italic";
+      font.normal.family = "FiraCode Nerd Font";
+      font.normal.style = "Regular";
+      window.startup_mode = "Maximized";
+      window.dimensions.columns = 120;
+      window.dimensions.lines = 50;
+    };
+  };
+
+  /*
   programs.ghostty = {
     enable = true;
     settings = {
@@ -54,6 +93,7 @@
       window-height = "9999";
     };
   };
+  */
 
   # this tells home-manager not to manage my .zshrc file since it comes from dotfiles
   # home.file.".zshrc".source = /home/brent/.zshrc;

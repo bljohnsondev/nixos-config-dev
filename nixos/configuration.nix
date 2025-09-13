@@ -3,7 +3,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
+      ./local.nix
       <home-manager/nixos>
     ];
 
@@ -13,7 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "brent-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -55,7 +55,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.xserver.videoDrivers = ["nvidia"];
+  #services.xserver.videoDrivers = ["nvidia"];
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -97,6 +97,10 @@
   # services.xserver.libinput.enable = true;
 
   programs.zsh.enable = true;
+
+  users.groups.brent = {
+    gid = 1000;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brent = {
